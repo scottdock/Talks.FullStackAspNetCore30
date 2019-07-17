@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+option csharp_namespace = "BlazorInsider.App";
+
+package OrdersHandler;
+
+// The orders service definition.
+service OrdersManager {
+  // Gets an order from the database
+  rpc GetNewOrder (OrderRequest) returns (OrderReply) {}
+  rpc AddOrder (AddOrderRequest) returns (AddOrderResponse) {}
+  rpc GetOrders (GetOrdersRequest) returns (GetOrdersResponse) {}
+}
+
+// ------------ GLOBAL OBJECT 
+message GetOrderModel {
+  int32 orderID = 1;
+  string description = 2;
+  int32 quantity = 3;
+  double total = 4;
+  string status = 5;
+}
+
+// ------------ GetNewOrder endpoint 
+// The order request
+message OrderRequest {
+}
+
+// The id of the order which must be processed
+message OrderReply {
+  int32 orderId = 1;
+}
+
+// ------------ AddOrder endpoint 
+message AddOrderRequest {
+  int32 orderID = 1;
+  string description = 2;
+  int32 quantity = 3;
+  double total = 4;
+  string status = 5;
+}
+
+message AddOrderResponse {
+  int32 newOrderID = 1;
+}
+
+// ------------ GetOrders endpoint 
+message GetOrdersRequest {
+}
+
+message GetOrdersResponse {
+  repeated GetOrderModel getOrderModels = 1;
+}
