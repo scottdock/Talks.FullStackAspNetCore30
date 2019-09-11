@@ -10,6 +10,7 @@ service OrdersManager {
   rpc GetNewOrder (OrderRequest) returns (OrderReply) {}
   rpc AddOrder (AddOrderRequest) returns (AddOrderResponse) {}
   rpc GetOrders (GetOrdersRequest) returns (GetOrdersResponse) {}
+  rpc UpdateOrder (UpdateOrderRequest) returns (UpdateOrderResponse) {}
 }
 
 // ------------ GLOBAL OBJECT 
@@ -51,3 +52,14 @@ message GetOrdersRequest {
 message GetOrdersResponse {
   repeated GetOrderModel getOrderModels = 1;
 }
+
+// ------------ UpdateOrder endpoint
+message UpdateOrderRequest {
+  int32 orderID = 1;
+}
+
+message UpdateOrderResponse {
+	bool success = 1;
+	string errorMessage = 2;
+}
+

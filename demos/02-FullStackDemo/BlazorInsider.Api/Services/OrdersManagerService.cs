@@ -67,5 +67,35 @@ namespace BlazorInsider.Api.Services
             return Task.FromResult(result);
         }
 
+        public override Task<UpdateOrderResponse> UpdateOrder(UpdateOrderRequest request, ServerCallContext context)
+        {
+            // init UpdateOrder 
+            var result = new UpdateOrderResponse()
+            {
+                Success = false,
+                ErrorMessage = string.Empty
+            };
+
+            // now update order 
+            try
+            {
+                var dbService = new BlazorInsider.App.Services.DatabaseService();
+                dbService.UpdateOrder(request.OrderID);
+                result.Success = true;
+            }
+            catch (Exception ex)
+            {
+                var msg = (ex.InnerException != null)
+                    ? $"{ex.Message} {ex.InnerException.Message} {ex.StackTrace}"
+                    : $"{ex.Message} {ex.StackTrace}";
+
+                result.Success = false;
+                result.ErrorMessage = msg;
+            }
+
+            return Task.FromResult(result);
+        }
+
+
     }
 }
