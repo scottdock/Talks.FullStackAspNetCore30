@@ -13,6 +13,23 @@
 }
 else
 {
+@*<table>
+    <tr>
+        <th>Date</th>
+        <th>Temp. (C)</th>
+        <th>Temp. (F)</th>
+        <th>Summary</th>
+    </tr>
+    @foreach (var f in forecasts)
+    {
+        <tr>
+            <td>@f.Date.ToShortDateString()</td>
+            <td>@f.TemperatureC</td>
+            <td>@f.TemperatureF</td>
+            <td>@f.Summary</td>
+        </tr>
+    }
+</table>*@
     <BlazorGrid Items="@forecasts" PageSize="2">
         <GridHeader>
             <th>Date</th>
