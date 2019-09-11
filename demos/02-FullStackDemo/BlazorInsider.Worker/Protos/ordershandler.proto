@@ -6,6 +6,7 @@ package OrdersHandler;
 service OrdersManager {
   // Sends a greeting
   rpc GetNewOrder (OrderRequest) returns (OrderReply) {}
+  rpc UpdateOrder (UpdateOrderRequest) returns (UpdateOrderResponse) {}
 }
 
 // The request message containing the user's name.
@@ -16,4 +17,13 @@ message OrderRequest {
 // The response message containing the greetings.
 message OrderReply {
   int32 orderId = 1;
+}
+
+message UpdateOrderRequest {
+  int32 orderID = 1;
+}
+
+message UpdateOrderResponse {
+	bool success = 1;
+	string errorMessage = 2;
 }
